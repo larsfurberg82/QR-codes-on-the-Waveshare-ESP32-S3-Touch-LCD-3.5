@@ -1,0 +1,35 @@
+menu "QR code generator"
+
+    config QR_VERSION
+        int "QR version (1-20)"
+        range 1 20
+        default 5
+        help
+            Symbol size is 4*version+17 modules. Larger versions hold more
+            data but need smaller modules on the 320 px wide screen
+            (version 20 still fits at 3 px per module).
+
+    choice QR_ECC_LEVEL_CHOICE
+        prompt "Error correction level"
+        default QR_ECC_LEVEL_H
+        config QR_ECC_LEVEL_L
+            bool "L (~7%)"
+        config QR_ECC_LEVEL_M
+            bool "M (~15%)"
+        config QR_ECC_LEVEL_Q
+            bool "Q (~25%)"
+        config QR_ECC_LEVEL_H
+            bool "H (~30%)"
+    endchoice
+
+    config QR_FIXED_MASK_ENABLE
+        bool "Use a fixed mask pattern (skip penalty scoring)"
+        default n
+
+    config QR_FIXED_MASK
+        int "Mask pattern (0-7)"
+        range 0 7
+        default 0
+        depends on QR_FIXED_MASK_ENABLE
+
+endmenu
