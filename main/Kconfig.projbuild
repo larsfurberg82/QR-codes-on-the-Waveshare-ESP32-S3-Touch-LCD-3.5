@@ -1,0 +1,82 @@
+menu "QR demo"
+
+    config QR_DEMO_INITIAL_TEXT
+        string "Text in the input field at boot (empty = none)"
+        default ""
+
+    config QR_DEMO_BACKLIGHT_PERCENT
+        int "Backlight brightness (%)"
+        range 0 100
+        default 1
+
+    config QR_DEMO_LOG_TOUCH
+        bool "Log every touch-down (raw + mapped coordinates)"
+        default n
+        help
+            Use this to check the touch orientation options below.
+
+endmenu
+
+menu "Waveshare ESP32-S3-Touch-LCD-3.5 board"
+
+    config BOARD_PIN_LCD_MOSI
+        int "LCD SPI MOSI GPIO"
+        default 1
+    config BOARD_PIN_LCD_SCLK
+        int "LCD SPI SCLK GPIO"
+        default 5
+    config BOARD_PIN_LCD_DC
+        int "LCD D/C GPIO"
+        default 3
+    config BOARD_PIN_LCD_BL
+        int "LCD backlight GPIO"
+        default 6
+    config BOARD_PIN_I2C_SDA
+        int "Shared I2C SDA GPIO"
+        default 8
+    config BOARD_PIN_I2C_SCL
+        int "Shared I2C SCL GPIO"
+        default 7
+    config BOARD_PIN_BOOT_BUTTON
+        int "BOOT button GPIO"
+        default 0
+
+    config BOARD_TCA9554_ADDR
+        hex "TCA9554 I/O expander I2C address"
+        default 0x20
+    config BOARD_TCA9554_LCD_RST_BIT
+        int "TCA9554 bit wired to LCD_RST (EXIO1 = 1)"
+        range 0 7
+        default 1
+    config BOARD_FT6336_ADDR
+        hex "FT6336 touch I2C address"
+        default 0x38
+
+    config BOARD_LCD_SPI_MHZ
+        int "LCD SPI clock (MHz)"
+        range 10 80
+        default 40
+    config BOARD_LCD_INVERT
+        bool "Invert display colours"
+        default y
+    config BOARD_TOUCH_SWAP_XY
+        bool "Touch: swap X and Y"
+        default n
+    config BOARD_TOUCH_MIRROR_X
+        bool "Touch: mirror X"
+        default n
+    config BOARD_TOUCH_MIRROR_Y
+        bool "Touch: mirror Y"
+        default n
+
+    config BOARD_LCD_BGR
+        bool "BGR colour order"
+        default y
+    config BOARD_LCD_MIRROR_X
+        bool "Mirror X"
+        default y
+    config BOARD_LCD_MIRROR_Y
+        bool "Mirror Y"
+        default n
+
+endmenu
